@@ -3,9 +3,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from app.repositories.study_plan_repository import (
-    InMemoryStudyPlanRepository,
-    StudyPlanRepository,
+from app.repositories.sqlite_study_plan_repository import (
+    SQLiteStudyPlanRepository,
 )
 from app.schemas.study_plan import (
     StudyPlanCreate,
@@ -18,7 +17,7 @@ from app.services.study_plan_service import StudyPlanService
 
 router = APIRouter(prefix="/api/v1/study-plans", tags=["Study Plans"])
 
-_repository = InMemoryStudyPlanRepository()
+_repository = SQLiteStudyPlanRepository()
 
 
 def get_service() -> StudyPlanService:
